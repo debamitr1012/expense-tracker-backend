@@ -110,7 +110,7 @@ on application startup — no manual migration step is required.
    - **Root Directory:** *(leave blank — this repo's root)*
    - **Runtime:** Python
    - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** (auto-detected from `Procfile`)
+   - **Start Command:** `gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT`
    - **Plan:** Free
    - **Python version:** Render detects Python 3.12.7 from `.python-version`.
      If the dashboard still shows a default version, add `PYTHON_VERSION=3.12.7`
