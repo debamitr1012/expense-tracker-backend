@@ -3,6 +3,7 @@ obj/
 *.user
 appsettings.Development.json
 .env
+.env.example
 .venv/
 __pycache__/
 *.db
