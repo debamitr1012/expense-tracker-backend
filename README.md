@@ -126,7 +126,7 @@ on application startup — no manual migration step is required.
    | `JWT_ISSUER` | `ExpenseTrackerApi` |
    | `JWT_AUDIENCE` | `ExpenseTrackerClient` |
    | `JWT_EXPIRY_MINUTES` | `1440` |
-   | `CORS_ALLOWED_ORIGINS` | `https://your-app.vercel.app` *(your deployed frontend URL)* |
+   | `CORS_ALLOWED_ORIGINS` | `https://expense-tracker-frontend-nine-gilt.vercel.app` *(your deployed frontend URL; no trailing slash)* |
 5. Click **Deploy**
 6. Once live, note your backend URL (e.g. `https://expensetracker-api.onrender.com`)
 

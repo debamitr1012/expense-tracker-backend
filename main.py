@@ -28,6 +28,7 @@ defaults = [
     "http://127.0.0.1:3000",
     "http://localhost:5050",
     "http://127.0.0.1:5050",
+    "https://expense-tracker-frontend-nine-gilt.vercel.app",
 ]
 for d in defaults:
     if d not in origins:
@@ -59,4 +60,3 @@ app.include_router(expenses.router)
 @app.get("/")
 def health() -> dict:
     return {"status": "ok"}
-
