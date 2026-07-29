@@ -48,13 +48,14 @@ Interactive OpenAPI docs are available at `/docs`.
 
 ### Database configuration
 
-The backend connects to a local MongoDB instance
-(`mongodb://localhost:27017`, database `expensetracker`) by default.
-To use a different database, set the following in `.env`:
+The backend reads both local and production MongoDB connection strings from
+`.env` and switches between them with `DATABASE_MODE`.
 
 | Key | Description | Example |
 |-----|-------------|---------|
-| `DATABASE_URL` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net` |
+| `DATABASE_MODE` | Which database URL to use (`local` or `prod`) | `local` |
+| `DATABASE_URL_LOCAL` | Local MongoDB connection string | `mongodb://localhost:27017` |
+| `DATABASE_URL_PROD` | Production MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net` |
 | `DATABASE_NAME` | Database name | `expensetracker` |
 
 Collections (`users`, `expenses`) and their indexes are created automatically
@@ -114,7 +115,9 @@ on application startup — no manual migration step is required.
 4. Add **Environment Variables:**
    | Key | Value |
    |-----|-------|
-   | `DATABASE_URL` | *(paste the MongoDB Atlas connection string from Step 1)* |
+   | `DATABASE_MODE` | `prod` |
+   | `DATABASE_URL_LOCAL` | `mongodb://localhost:27017` |
+   | `DATABASE_URL_PROD` | *(paste the MongoDB Atlas connection string from Step 1)* |
    | `DATABASE_NAME` | `expensetracker` |
    | `JWT_KEY` | *(a long random secret — generate one with `openssl rand -hex 32`)* |
    | `JWT_ISSUER` | `ExpenseTrackerApi` |

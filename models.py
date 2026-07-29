@@ -3,7 +3,8 @@ from decimal import Decimal
 
 import pymongo
 from beanie import Document, PydanticObjectId
-from pydantic import Field
+from bson.decimal128 import Decimal128
+from pydantic import Field, field_validator
 
 
 def _utcnow() -> datetime:
@@ -32,6 +33,19 @@ class Expense(Document):
     date: datetime
     created_at: datetime = Field(default_factory=_utcnow)
     user_id: PydanticObjectId
+
+    @field_validator("amount", mode="before")
+    @classmethod
+    def convert_bson_decimal128(cls, value: object) -> object:
+        """Convert MongoDB's BSON Decimal128 value into a Python Decimal.
+
+        Motor returns existing Decimal128 fields as ``Decimal128`` objects,
+        which Pydantic does not coerce automatically.  New API values are
+        already normal Python numeric values and pass through unchanged.
+        """
+        if isinstance(value, Decimal128):
+            return value.to_decimal()
+        return value
 
     class Settings:
         name = "expenses"
