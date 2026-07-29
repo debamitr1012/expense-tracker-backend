@@ -112,6 +112,9 @@ on application startup — no manual migration step is required.
    - **Build Command:** `pip install -r requirements.txt`
    - **Start Command:** (auto-detected from `Procfile`)
    - **Plan:** Free
+   - **Python version:** Render detects Python 3.12.7 from `.python-version`.
+     If the dashboard still shows a default version, add `PYTHON_VERSION=3.12.7`
+     under **Environment** and redeploy.
 4. Add **Environment Variables:**
    | Key | Value |
    |-----|-------|
