@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     database_url_local: str = Field(default="mongodb://localhost:27017", alias="DATABASE_URL_LOCAL")
     database_url_prod: str = Field(
         default="",
-        alias="DATABASE_URL_PROD",
+        alias="DATABASE_URL",
     )
     database_name: str = "expensetracker"
 
