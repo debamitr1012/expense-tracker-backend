@@ -9,12 +9,12 @@ class Settings(BaseSettings):
     database_mode: str = Field(default="local", alias="DATABASE_MODE")
     database_url_local: str = Field(default="mongodb://localhost:27017", alias="DATABASE_URL_LOCAL")
     database_url_prod: str = Field(
-        default="mongodb+srv://debamitr10_db_user:KtAqHvBP6g3haOe5@clusteretdb.i0dr4ev.mongodb.net/?appName=ClusterETdb",
+        default="",
         alias="DATABASE_URL_PROD",
     )
     database_name: str = "expensetracker"
 
-    jwt_key: str = "CHANGE_THIS_TO_A_LONG_RANDOM_SECRET_AT_LEAST_32_CHARS_LONG_123!"
+    jwt_key: str = Field(default="", alias="JWT_KEY")
     jwt_issuer: str = "ExpenseTrackerApi"
     jwt_audience: str = "ExpenseTrackerClient"
     jwt_expiry_minutes: int = 1440
