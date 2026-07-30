@@ -15,6 +15,10 @@ class LoginDto(BaseModel):
     password: str
 
 
+class GoogleLoginDto(BaseModel):
+    credential: str = Field(min_length=1)
+
+
 class AuthResponseDto(BaseModel):
     token: str
     name: str

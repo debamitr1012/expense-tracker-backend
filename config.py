@@ -18,6 +18,7 @@ class Settings(BaseSettings):
     jwt_issuer: str = "ExpenseTrackerApi"
     jwt_audience: str = "ExpenseTrackerClient"
     jwt_expiry_minutes: int = 1440
+    google_client_id: str = Field(default="", alias="GOOGLE_CLIENT_ID")
 
     cors_allowed_origins: str = (
         "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000,http://127.0.0.1:3000"

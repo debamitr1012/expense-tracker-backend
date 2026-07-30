@@ -14,13 +14,15 @@ def _utcnow() -> datetime:
 class User(Document):
     name: str
     username: str
-    password_hash: str
+    password_hash: str | None = None
+    google_id: str | None = None
     created_at: datetime = Field(default_factory=_utcnow)
 
     class Settings:
         name = "users"
         indexes = [
             pymongo.IndexModel("username", unique=True),
+            pymongo.IndexModel("google_id", unique=True, sparse=True),
         ]
 
 
