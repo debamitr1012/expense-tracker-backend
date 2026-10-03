@@ -35,6 +35,8 @@ def _to_dto(expense: Expense) -> ExpenseResponseDto:
         amount=float(expense.amount or 0.0),
         category=expense.category or "General",
         date=extracted,
+        payment_method=expense.payment_method or "Not specified",
+        payment_source=expense.payment_source or "",
     )
 
 
@@ -74,6 +76,8 @@ async def create(
         description=dto.description.strip(),
         amount=dto.amount,
         category=dto.category,
+        payment_method=dto.payment_method,
+        payment_source=dto.payment_source,
         date=_to_datetime(dto.date),
         user_id=user_id,
     )
@@ -96,6 +100,8 @@ async def update(
     expense.description = dto.description.strip()
     expense.amount = dto.amount
     expense.category = dto.category
+    expense.payment_method = dto.payment_method
+    expense.payment_source = dto.payment_source
     expense.date = _to_datetime(dto.date)
     await expense.save()
     return Response(status_code=status.HTTP_204_NO_CONTENT)

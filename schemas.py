@@ -30,10 +30,17 @@ class ExpenseDto(BaseModel):
     amount: Decimal = Field(gt=Decimal("0"), le=Decimal("1000000"))
     category: str = Field(min_length=1, max_length=50)
     date: date
+    payment_method: str = Field(default="Not specified", min_length=1, max_length=40)
+    payment_source: str = Field(default="", max_length=100)
 
     @field_validator("description")
     @classmethod
     def _strip_description(cls, v: str) -> str:
+        return v.strip()
+
+    @field_validator("payment_method", "payment_source")
+    @classmethod
+    def _strip_payment_details(cls, v: str) -> str:
         return v.strip()
 
 
@@ -45,3 +52,5 @@ class ExpenseResponseDto(BaseModel):
     amount: float
     category: str
     date: date
+    payment_method: str = "Not specified"
+    payment_source: str = ""

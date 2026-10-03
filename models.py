@@ -30,6 +30,8 @@ class Expense(Document):
     description: str
     amount: Decimal
     category: str
+    payment_method: str = "Not specified"
+    payment_source: str = ""
     # Stored as datetime (MongoDB has no plain date type); converted to/from
     # date at the API boundary.
     date: datetime
